@@ -1,3 +1,4 @@
+大屏自适应模板 pxtorem-loader lib-flexible
 # demo-app
 
 > A Vue.js project
