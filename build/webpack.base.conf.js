@@ -12,7 +12,7 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    entry: ['./node_modules/lib-flexible/flexible', './src/main.js'],
+    entry: ['./flexible.js', './src/main.js'],
   },
   output: {
     path: config.build.assetsRoot,
