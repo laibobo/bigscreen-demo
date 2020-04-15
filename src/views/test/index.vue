@@ -1,23 +1,27 @@
 <template>
   <div>
     <div class="header">
-      <h1>系统数据分析</h1>
+      <h1>洗浴中心数据分析</h1>
     </div>
     <div class="main">
       <div class="left">
-        <!-- 申请单数量 -->
+        <!-- 线下单数量 -->
         <div class="z-panel applyorder-quantity">
           <div class="title">
-            申请单数量
+            线下单数量
           </div>
           <div class="content">
             <ul>
               <li>
-                <label>零担业务数量</label>
+                <label>半日业务数量</label>
                 <span>1,000</span>
               </li>
               <li>
-                <label>今日零担业务数量</label>
+                <label>今日业务数量</label>
+                <span>1,000</span>
+              </li>
+              <li>
+                <label>本月业务数量</label>
                 <span>1,000</span>
               </li>
               <li>
@@ -25,49 +29,45 @@
                 <span>1,000</span>
               </li>
               <li>
-                <label>本月零担业务数量</label>
-                <span>1,000</span>
-              </li>
-              <li>
-                <label>整车业务数量</label>
+                <label>业务数量</label>
                 <span class="yellow">1,000</span>
               </li>
               <li>
-                <label>今日整车业务数量</label>
+                <label>今日业务数量</label>
                 <span class="yellow">1,000</span>
               </li>
               <li>
-                <label>本月整车业务数量</label>
+                <label>本月业务数量</label>
                 <span class="yellow">1,000</span>
               </li>
               <li>
-                <label>本年整车业务数量</label>
+                <label>本年业务数量</label>
                 <span class="yellow">1,000</span>
               </li>
             </ul>
           </div>
         </div>
-        <!-- 订单数量 -->
+        <!-- 线上单数量 -->
         <div class="z-panel order-quantity">
           <div class="title">
-            订单数量
+            线上单数量
           </div>
           <div class="content">
             <ul>
               <li>
-                <label>整车订单数量</label>
+                <label>洗脚</label>
                 <span>1,000</span>
               </li>
               <li>
-                <label>今日整车订单数量</label>
+                <label>拔火罐</label>
                 <span>1,000</span>
               </li>
               <li>
-                <label>本月整车订单数量</label>
+                <label>推油</label>
                 <span>1,000</span>
               </li>
               <li>
-                <label>本年整车订单数量</label>
+                <label>本年单数量</label>
                 <span>1,000</span>
               </li>
             </ul>
@@ -76,7 +76,9 @@
         <!-- 业务数量统计图 -->
         <div class="z-panel linechart">
           <div class="title">业务数量统计图</div>
-          <div class="content"></div>
+          <div class="content">
+              <div class="m-chart" id="businessNumCount"></div>
+          </div>
         </div>
         <!-- 用户分布 -->
         <div class="z-panel user-distribute">
@@ -85,22 +87,22 @@
             <ul>
               <li style="width:100%;">
                  <span class="symbol-col">
-                   <img :src="require('@/assets/images/box.png')" alt="货主">
-                   <label>货主</label>
+                   <img :src="require('@/assets/images/box.png')" alt="广东">
+                   <label>广东</label>
                  </span>
                  <span class="count">106,500</span>
               </li>
               <li>
                  <span class="symbol-col">
-                   <img :src="require('@/assets/images/person.png')" alt="司机">
-                   <label>司机</label>
+                   <img :src="require('@/assets/images/person.png')" alt="凯迪拉克">
+                   <label>凯迪拉克</label>
                  </span>
                  <span class="count">3,000</span>
               </li>
               <li>
                  <span class="symbol-col">
-                   <img :src="require('@/assets/images/buildings.png')" alt="物流公司">
-                   <label>物流公司</label>
+                   <img :src="require('@/assets/images/buildings.png')" alt="白领">
+                   <label>白领</label>
                  </span>
                  <span class="count">999</span>
               </li>
@@ -114,29 +116,29 @@
              <ul>
               <li>
                  <span class="symbol-col">
-                   <img :src="require('@/assets/images/box.png')" alt="货主">
-                   <label>货主</label>
+                   <img :src="require('@/assets/images/box.png')" alt="凯迪拉克">
+                   <label>凯迪拉克</label>
                  </span>
                  <span class="count">100</span>
               </li>
               <li>
                  <span class="symbol-col">
-                   <img :src="require('@/assets/images/car.png')" alt="车辆">
-                   <label>车辆</label>
+                   <img :src="require('@/assets/images/car.png')" alt="宝马">
+                   <label>宝马</label>
                  </span>
                  <span class="count">500</span>
               </li>
               <li>
                  <span class="symbol-col">
-                   <img :src="require('@/assets/images/person.png')" alt="司机">
-                   <label>司机</label>
+                   <img :src="require('@/assets/images/person.png')" alt="奔驰">
+                   <label>奔驰</label>
                  </span>
                  <span class="count">10</span>
               </li>
               <li>
                  <span class="symbol-col">
-                   <img :src="require('@/assets/images/buildings.png')" alt="物流公司">
-                   <label>物流公司</label>
+                   <img :src="require('@/assets/images/buildings.png')" alt="法拉利">
+                   <label>法拉利</label>
                  </span>
                  <span class="count">33</span>
               </li>
@@ -145,9 +147,9 @@
         </div>
       </div>
       <div class="right">
-        <!-- 公司发货数量TOP10 -->
+        <!-- 个人次数TOP10 -->
         <div class="z-panel">
-          <div class="title">公司发货数量TOP10</div>
+          <div class="title">个人次数TOP10</div>
           <div class="content">
             <ol>
               <li v-for="(item,index) in list" :key="index">
@@ -157,9 +159,9 @@
             </ol>
           </div>
         </div>
-        <!-- 物流公司发货数量TOP10 -->
+        <!-- 公司团体次数TOP10 -->
         <div class="z-panel">
-          <div class="title">物流公司发货数量TOP10</div>
+          <div class="title">公司团体次数TOP10</div>
           <div class="content">
             <ol>
               <li v-for="(item,index) in list" :key="index">
@@ -174,6 +176,7 @@
   </div>
 </template>
 <script>
+  import echarts from "echarts";
   export default {
     data() {
       return {
@@ -217,13 +220,97 @@
             name: '哇哈哈哈有限公司',
             count: 5
           }
-        ]
+        ],
+        mddateList:["00:20","01:23","01:26","01:29","01:30","07:15","07:17","07:44","07:49","07:55","08:13","08:35","08:43","08:45","08:46","08:54","08:55","09:07","09:12","09:13","09:17","09:19","09:23","09:35","09:39","09:47","09:53","09:58","10:00","10:25","10:40","10:46","10:50","10:57","11:00","11:02","11:03","11:20","11:21","11:22","11:23","11:24","11:25","11:30","11:49","11:54","12:22","13:47","13:52","13:53","14:04","14:16","14:21","14:24","14:28","14:37","14:39","14:41","14:45","14:52","14:59","15:07","15:22","15:26","15:27","15:29","15:43","15:44","15:45","15:46","15:48","15:50","15:51","15:52","15:53","16:08","16:09","16:10","16:24","16:31","16:33","16:35","16:36","16:40","16:49","16:52","16:53","16:55","16:56","16:57","17:06","17:26","17:30","17:36","17:38","17:40","17:43","17:46","18:18","18:20","18:52"],
+        dataLDlist:[10,8,8,4,4,12,5,4,2,2,30,16,1,3,15,8,8,1,1,1,1,9,1,5,16,1,2,13,1,1,1,2,1,1,1,1,1,2,1,1,3,1,1,2,1,1,2,2,2,1,1,12,7,8,1,7,3,3,8,1,2,1,1,1,1,1,8,2,1,9,1,1,1,8,8,1,12,1,1,3,1,21,3,1,1,1,1,6,6,4,1,12,7,7,7,12,3,3,1,1,1],
+        dataZClist:[1,1,1,1,1,2,3,1,2,1,1,1,1,1,1,1,1,2,3,1,1,1,3,1,1,1,3,6,1,2,2,1,3,2,1,1,2,1,1,2,1,1,1,1,2,1,1,1,5,1,1,1,1,3,1,1,3,1,3,2,1,1,1,1,5,1,1,1,3,3,2,1,1,1,1,6,5,5,6,1,2,2,1,1,1,1,3,1,1,2,1,1,2,1,2,1,5,1,1,1,2,1,1,2,1,2,2,3,2,1,3,1,2,1,1,1,1,2,1,1,1,1,2,2,1,2,1,2,1,1,1,3,1,1,3,2,1,2,4,3,2,3,1,1,1,1,2,1,1,1,3,2,1,1,1,1,1,1,1,2,2,1,1,2,1,1,1,3,1,1,1,1,3,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,2,1,3,1,1,1,2,2,4,4,3,1,2,1,2,3,2,2,1,2,1,1,1,1,2,1,3,1,2,2,1,3,1,2,1,2,1,1,3,1,2,5,2,4,1,2,2,1,4,1,1,1,2,3,1,1,1,1,2,2,1,1,1,3,1,1,1,2,2,3,1,1,1,2,3,3,3,1,1,4,2,1,2,1,2,2,1,2,1,2,2,1,2,1,1,3,2,1,1,2,1,1,2,1,1,2,1,1,2,1,1,1,1,1,1,2,3,3,4,2,1,1,2,1,1,1,2,1,1,1,1,1,3,3,1,1,1,1,1,1,2,4,2,1,1,2,2,1,1,2,2,1,1,3,2,1,3,2,1,1,1,2,1,1,1,1,1,2,1,3,1,1,1,1,2,1,2,1,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,1]
       }
+    },
+    mounted(){
+      const _self = this
+      echarts.init(document.getElementById("businessNumCount")).setOption({
+          grid: {
+              top: 25,
+              left: 30,
+              right: 30,
+              bottom: 25
+          },
+          legend: {
+              data: ["线上", "线下"],
+              right: 20,
+              top: 0,
+              textStyle: {
+                  color: "#8A8E99"
+              }
+          },
+          xAxis: {
+              data: _self.mddateList,
+              axisLabel: {
+                  color: "#8A8E99"
+              },
+              axisLine: {
+                  lineStyle: {
+                      color: "#33394f"
+                  }
+              }
+          },
+          yAxis: {
+              type: "value",
+              axisLabel: {
+                  color: "#8A8E99"
+              },
+              splitLine: {
+                  lineStyle: {
+                      color: "#33394f"
+                  }
+              },
+              axisLine: {
+                  show: false
+              }
+          },
+          series: [{
+                  name: "线上",
+                  data: _self.dataLDlist,
+                  type: "line",
+                  symbol: "circle",
+                  symbolSize: 6,
+                  itemStyle: {
+                      color: "#333",
+                      normal: {
+                          color: "#14CC8F"
+                      }
+                  }
+              },
+              {
+                  name: "线下",
+                  data: _self.dataZClist,
+                  type: "line",
+                  symbol: "circle",
+                  symbolSize: 6,
+                  itemStyle: {
+                      color: "#333",
+                      normal: {
+                          color: "#FFBF00"
+                      }
+                  }
+              }
+          ]
+      })
+      window.onresize = () => {
+        location.reload()
+      };
+    },
+    destroyed(){
+      window.onresize = null
     }
   }
-
 </script>
 <style lang="less" scoped>
+  .m-chart{
+    width: 100%;
+    height: 300px;
+    box-sizing: border-box;
+  }
   .header {
     width: 1920px;
     height: 90px;
